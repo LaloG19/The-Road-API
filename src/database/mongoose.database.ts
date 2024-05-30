@@ -1,4 +1,5 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+var api_url = process.env.DB_URI || '';
 
 export const connectDatabase = async () => {
   try {
