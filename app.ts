@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
+/* import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
@@ -57,3 +57,4 @@ const App = {
 };
 
 export default App;
+ */
