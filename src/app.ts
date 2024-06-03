@@ -45,11 +45,11 @@ const App = {
     });
 
     async function startServer() {
-      /* await connectDatabase(); */
       app.use(handleError);
       app.listen(PORT, () => {
         console.log(`[ERP-API] se ejecuta en http://localhost:${PORT}`);
       });
+      await connectDatabase();
     }
 
     startServer();
