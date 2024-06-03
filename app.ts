@@ -5,11 +5,11 @@ import swaggerUI from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
 
 // Importar rutas
-import routes from './routes';
-import { options } from './swagger.options';
+import routes from './src/routes';
+import { options } from './src/swagger.options';
 
 // Base de datos
-import { connectDatabase } from './database/mongoose.database';
+import { connectDatabase } from './src/database/mongoose.database';
 
 dotenv.config();
 
