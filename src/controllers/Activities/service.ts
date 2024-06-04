@@ -4,7 +4,7 @@ import { User } from "./interface";
 /* const firebaseAuth = firebase.auth(); */
 import { query, validationResult } from 'express-validator';
 
-export async function getAllUsers() {
+export async function getAllActivities() {
     try {
       const db = await dbConnect();
       let dbRef = db.collection("Users");
@@ -16,7 +16,7 @@ export async function getAllUsers() {
     }
   }
 
-export async function getById(userId: string) {
+export async function getActivityById(userId: string) {
     try {
       
       const database = await dbConnect();
@@ -28,7 +28,7 @@ export async function getById(userId: string) {
     }
 }
 
-export async function createUser(data: User) {
+export async function createActivity(data: User) {
     try {
   
       /* Save in Fireauth */
@@ -65,7 +65,7 @@ export async function createUser(data: User) {
   }
   
   
-  export async function updateUserById(data: User) {
+  export async function updateActivityById(data: User) {
     try {
   
       /* Save in Fireauth */
@@ -96,7 +96,7 @@ export async function createUser(data: User) {
     }
   }
   
-  export async function deleteUserById(id: string) {
+  export async function deleteActivityById(id: string) {
     try {
       //Getting user informatino
       const database = await dbConnect();
@@ -115,11 +115,3 @@ export async function createUser(data: User) {
     }
   }
   
-  export async function updatePassword(password: string, uid: string) {
-    try {
-      /* await firebase.auth().updateUser(uid, { password: password }); */
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  }
