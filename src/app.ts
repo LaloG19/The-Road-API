@@ -5,11 +5,11 @@ import swaggerUI from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
 
 // Importar rutas
-import routes from './routes';
+import routes from './routes/users';
 import { options } from './swagger.options';
 
 // Base de datos
-import { connectDatabase } from './database/mongoose.database';
+import { dbConnect } from './database/mongoose.database';
 
 dotenv.config();
 
@@ -49,7 +49,7 @@ const App = {
       app.listen(PORT, () => {
         console.log(`[ERP-API] se ejecuta en http://localhost:${PORT}`);
       });
-      await connectDatabase();
+      await dbConnect();
     }
 
     startServer();

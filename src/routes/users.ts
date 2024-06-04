@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { Controller123 } from '../controllers/Controller123';
+import { CreateUserController, getAllUsersController, getByIdController, UpdateUserByIdController } from '../controllers/Users/controller';
 
 const router = Router();
 
@@ -35,5 +36,29 @@ router.get(
   ],
   Controller123
 );
+router.get(
+  '/getUsers',
+  getAllUsersController
+);
+router.get(
+  '/getUserById',
+  getByIdController
+);
+router.post(
+  '/CreateUser',
+  CreateUserController
+);
+router.put(
+  '/UpdateUserById',
+  UpdateUserByIdController
+);
 
+/* router.get(
+  '/getUserController',
+  [
+    check('param').isString().withMessage('[GET]: Endpoint de prueba Get Usuarios falló.')
+  ],
+  getUserController
+); */
+ 
 export default router;
