@@ -1,13 +1,13 @@
 import { dbConnect, getMongoId } from "../../database/mongoose.database";
 import { User } from "./interface";
-import * as firebase from '../../database/firebase'
-const firebaseAuth = firebase.auth();
+/* import * as firebase from '../../database/firebase' */
+/* const firebaseAuth = firebase.auth(); */
 
 
 export async function getAllUsers() {
     try {
       const db = await dbConnect();
-      let dbRef = db.collection("users");
+      let dbRef = db.collection("Users");
       let response = await dbRef.find().sort({$natural:-1}).toArray() as [];
       return response
     } catch (error) {
@@ -31,19 +31,18 @@ export async function createUser(data: User) {
     try {
   
       /* Save in Fireauth */
-      const userRecord = await firebaseAuth.createUser({ 
+      /* const userRecord = await firebaseAuth.createUser({ 
         email: data.email,
         password: data.password,
         displayName: data.name,
         emailVerified: true,
-      })
+      }) */
   
       /* Save in MongoDB */
       const database = await dbConnect();
       const clientRef = database.collection("Users");
   
       let user: User = {
-        uid: userRecord.uid,
         name: data.name,
         lastname: data.lastname,
         rolename: data.rolename,
@@ -69,15 +68,15 @@ export async function createUser(data: User) {
     try {
   
       /* Save in Fireauth */
-      await firebaseAuth.updateUser(data.uid!, {
+      /* await firebaseAuth.updateUser(data.uid!, {
         email: data.email,
         displayName: data.name,
-      });
+      }); */
   
       /* Save in MongoDB */
       const db = await dbConnect();
       let dbRef = db.collection("users");
-      let id = data._id!;
+      let id = data._id;
       delete data._id;
       let user: User = data;
   
@@ -100,12 +99,12 @@ export async function createUser(data: User) {
     try {
       //Getting user informatino
       const database = await dbConnect();
-      const dBRef = database.collection("users");
+      const dBRef = database.collection("Users");
       //Checking if it exists
       let response = await dBRef.findOne({_id: getMongoId(id)})
   
       //Delete in Firebase
-      await firebaseAuth.deleteUser(response!.uid); 
+      /* await firebaseAuth.deleteUser(response!.uid); */ 
       //Delete in MongoDB
       await dBRef.deleteOne( { _id: getMongoId(id) });
       return id;
@@ -117,7 +116,7 @@ export async function createUser(data: User) {
   
   export async function updatePassword(password: string, uid: string) {
     try {
-      await firebase.auth().updateUser(uid, { password: password });
+      /* await firebase.auth().updateUser(uid, { password: password }); */
     } catch (error) {
       console.log(error);
       throw error;
