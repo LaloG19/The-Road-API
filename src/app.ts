@@ -5,7 +5,7 @@ import swaggerUI from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
 
 // Importar rutas
-import routes from './routes/users';
+import routes from './routes/main';
 import { options } from './swagger.options';
 
 // Base de datos

@@ -2,7 +2,7 @@ import { HttpStatusCode } from "../models/http.model";
 
 export class BaseError extends Error {
     public readonly log: string;
-    public readonly methodName: string;
+    public readonly methodName!: string;
     public readonly httpCode: number;
     public readonly isOperational: boolean;
 
