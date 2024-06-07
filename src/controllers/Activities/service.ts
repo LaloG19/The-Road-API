@@ -7,7 +7,7 @@ import { query, validationResult } from 'express-validator';
 export async function getAllActivities() {
     try {
       const db = await dbConnect();
-      let dbRef = db.collection("Users");
+      let dbRef = db.collection("Activities");
       let response = await dbRef.find().sort({$natural:-1}).toArray() as [];
       return response
     } catch (error) {
@@ -20,7 +20,7 @@ export async function getActivityById(userId: string) {
     try {
       
       const database = await dbConnect();
-      const userRef = database.collection("Users");
+      const userRef = database.collection("Activities");
       let user = await userRef.findOne<any>({ uid: userId })
       return user;
     } catch (error) {
@@ -41,7 +41,7 @@ export async function createActivity(data: User) {
   
       /* Save in MongoDB */
       const database = await dbConnect();
-      const clientRef = database.collection("Users");
+      const clientRef = database.collection("Activities");
   
       let user: User = {
         name: data.name,
@@ -76,7 +76,7 @@ export async function createActivity(data: User) {
   
       /* Save in MongoDB */
       const db = await dbConnect();
-      let dbRef = db.collection("users");
+      let dbRef = db.collection("Activities");
       let id = data._id;
       delete data._id;
       let user: User = data;
@@ -100,7 +100,7 @@ export async function createActivity(data: User) {
     try {
       //Getting user informatino
       const database = await dbConnect();
-      const dBRef = database.collection("Users");
+      const dBRef = database.collection("Activities");
       //Checking if it exists
       let response = await dBRef.findOne({_id: getMongoId(id)})
   
