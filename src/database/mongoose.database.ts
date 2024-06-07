@@ -1,14 +1,26 @@
-const mongoose = require('mongoose');
-var api_url = process.env.DB_URI || '';
+import { Db, MongoClient, ObjectId } from "mongodb";
+var api_url = process.env.DB_URI || 'mongodb+srv://admin:admin@theroadcluster.pghx5dg.mongodb.net/';
 
-export const connectDatabase = async () => {
+const client = new MongoClient(api_url);
+let roadConnection: Db;
+
+export async function dbConnect() {
   try {
-    await mongoose.connect(process.env.DB_URI || '', {
-      // Las opciones useNewUrlParser y useUnifiedTopology ya no son necesarias
-    });
-    console.log('[OK] Conexión establecida con MongoDB');
+    if (!roadConnection) {
+      await client.connect();
+      roadConnection = client.db("TheRoadDB");
+      console.log("Conexión a Base de datos");
+      return roadConnection;
+    }
+    return roadConnection;
   } catch (error) {
-    console.error('[ERROR] No se pudo conectar con MongoDB', error);
-    process.exit(1);
+    console.log('Error al conectar a BD de Comtecsa');
+    throw error;
   }
-};
+}
+
+export function getMongoId(documentId: string) {
+  try {
+    return new ObjectId(documentId);
+  } catch (error) {}
+}
