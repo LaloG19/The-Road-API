@@ -1,7 +1,22 @@
 # The-Road-API
 ## The backend repository for the school project "The Road".
 
-# Estructura del proyecto
+### Comandos
+```bash
+  # Instalar dependencias
+  npm i
+
+  # Transpilar código de TS a JS
+  --- npm run build
+
+  # Correr el proyecto
+  --- npm start
+
+  # Generar markdown con el scaffolding del proyecto
+  --- node .\generateStructure.js
+```
+
+### Estructura del proyecto
 ```bash
 ├── .env
 ├── .gitignore
