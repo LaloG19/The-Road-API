@@ -62,7 +62,7 @@ userRouter.get('/getUserById/:id', getByIdController);
  *               name:
  *                 type: string
  *               lastname:
- *                 type: number
+ *                 type: string
  *               email:
  *                 type: string
  *               password: 
@@ -102,7 +102,7 @@ userRouter.post('/CreateUser', CreateUserController);
  *               name:
  *                 type: string
  *               lastname:
- *                 type: number
+ *                 type: string
  *               email:
  *                 type: string
  *               password: 
