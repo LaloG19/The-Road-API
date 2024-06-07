@@ -12,8 +12,12 @@ export const options = {
         url: `http://localhost:${process.env.PORT ? process.env.PORT : 3000 }`,
       },
       {
-        name: 'Producción',
+        name: 'Vercel',
         url: 'https://the-road-api.vercel.app/',
+      },
+      {
+        name: 'Render',
+        url: 'https://the-road-api.onrender.com/',
       }
     ],
   },
