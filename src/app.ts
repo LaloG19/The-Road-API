@@ -3,12 +3,11 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
+import { options } from './swagger.options';
+import path from 'path';
 
 // Importar rutas
 import routes from './routes';
-import { options } from './swagger.options';
-
-// Base de datos
 import { connectDatabase } from './database/mongoose.database';
 
 dotenv.config();
@@ -22,9 +21,12 @@ const App = {
     app.use(cors());
     app.use(express.json());
 
-    // Swagger
+    // Configurar Swagger UI
     const specs = swaggerJsDoc(options);
+
+    // Servir archivos estáticos de swagger-ui-dist
     app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs));
+    app.use('/docs', express.static(path.join(__dirname, '..', 'node_modules', 'swagger-ui-dist')));
 
     // Rutas
     app.use('/api', routes);

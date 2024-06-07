@@ -26,6 +26,7 @@
     "express-validator": "^6.12.2",
     "mongoose": "^8.4.0",
     "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-dist": "^5.17.14",
     "swagger-ui-express": "^4.1.6"
   }
 }
