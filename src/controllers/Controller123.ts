@@ -7,5 +7,5 @@ export const Controller123 = (req: Request, res: Response) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  res.json({ message: '¡Test, endpoint Controller123!: ' + text });
+  res.json({ message: 'Test, parámetro recibido: \n' + text });
 };
