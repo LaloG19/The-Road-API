@@ -14,10 +14,6 @@ export const options = {
       {
         name: 'Producción',
         url: 'https://the-road-api.vercel.app/',
-      },
-      {
-        name: 'Producción con Port',
-        url: 'https://the-road-api.vercel.app:3000/',
       }
     ],
   },
