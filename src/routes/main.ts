@@ -1,12 +1,10 @@
-import { Router } from 'express';
-import { check } from 'express-validator';
-import { Controller123 } from '../controllers/Controller123';
+import { Router } from "express";
+import userRouter from "./users";
 
-const router = Router();
-
+const routes = Router();
 /**
  * @swagger
- * /api/test:
+ * /api/users/test:
  *   get:
  *     summary: GET de prueba
  *     description: Retorna un mensaje que le envies
@@ -28,12 +26,6 @@ const router = Router();
  *                 message:
  *                   type: string
  */
-router.get(
-  '/test',
-  [
-    check('param').isString().withMessage('[GET]: Endpoint de prueba Controller 123 falló.')
-  ],
-  Controller123
-);
+routes.use('/users', userRouter);
 
-export default router;
+export default routes;
