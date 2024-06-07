@@ -24,7 +24,7 @@ const App = {
 
     // Swagger
     const specs = swaggerJsDoc(options);
-    app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs));
+    app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs));
 
     // Rutas
     app.use('/api', routes);
