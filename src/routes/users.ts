@@ -59,11 +59,15 @@ userRouter.get('/getUserById/:id', getByIdController);
  *           schema:
  *             type: object
  *             properties:
- *               nombre:
+ *               name:
  *                 type: string
- *               edad:
+ *               lastname:
  *                 type: number
  *               email:
+ *                 type: string
+ *               password: 
+ *                 type: string
+ *               rolename: 
  *                 type: string
  *     responses:
  *       201:
@@ -95,11 +99,15 @@ userRouter.post('/CreateUser', CreateUserController);
  *           schema:
  *             type: object
  *             properties:
- *               nombre:
+ *               name:
  *                 type: string
- *               edad:
+ *               lastname:
  *                 type: number
  *               email:
+ *                 type: string
+ *               password: 
+ *                 type: string
+ *               rolename: 
  *                 type: string
  *     responses:
  *       200:
@@ -125,19 +133,6 @@ userRouter.put('/UpdateUserById/:id', UpdateUserByIdController);
  *         schema:
  *           type: string
  *         description: ID del usuario
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               nombre:
- *                 type: string
- *               edad:
- *                 type: number
- *               email:
- *                 type: string
  *     responses:
  *       200:
  *         description: Usuario Eliminado
