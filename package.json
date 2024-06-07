@@ -4,7 +4,7 @@
   "description": "The backend repository for the school project \"The Road\".",
   "main": "dist/index.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "node dist/index.js",
     "build": "tsc",
     "serve": "node dist/index.js"
   },
