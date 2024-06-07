@@ -4,7 +4,7 @@ import userRouter from "./users";
 const routes = Router();
 /**
  * @swagger
- * /api/test:
+ * /api/users/test:
  *   get:
  *     summary: GET de prueba
  *     description: Retorna un mensaje que le envies
