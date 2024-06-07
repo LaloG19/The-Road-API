@@ -9,7 +9,7 @@ const router = Router();
  * /api/test:
  *   get:
  *     summary: GET de prueba
- *     description: Retorna un mensaje que le envies
+ *     description: Retorna un mensaje que le envie
  *     parameters:
  *       - in: query
  *         name: param
