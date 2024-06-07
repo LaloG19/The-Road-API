@@ -1,8 +1,8 @@
 # The-Road-API
-The backend repository for the school project "The Road".
+## The backend repository for the school project "The Road".
 
 # Estructura del proyecto
-
+```bash
 ├── .env
 ├── .gitignore
 ├── generateStructure.js
@@ -21,3 +21,4 @@ The backend repository for the school project "The Road".
 │   │   └── index.ts
 │   └── swagger.options.ts
 └── tsconfig.json
+```
