@@ -63,9 +63,10 @@ export async function UpdateUserByIdController(
     res: Response
   ) {
     try {
+      const id = req.params.id;
       const body = req.body;
       console.log("User Data: ", body)
-      let response = await service.updateUserById(body);
+      let response = await service.updateUserById(id, body);
       res.status(200).send({ status: HttpStatusCode.OK, message: "Usuario actualizado con Exito!", data: response });
     } catch (err) {
       res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('UpdateUserByIdController ERROR:' + err));

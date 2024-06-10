@@ -19,9 +19,10 @@ export async function getAllUsers() {
 export async function getById(userId: string) {
     try {
       
-      const database = await dbConnect();
-      const userRef = database.collection("Users");
-      let user = await userRef.findOne<any>({ uid: userId })
+      const db = await dbConnect();
+      let dbRef = db.collection("Users");
+      let user = await dbRef.findOne({ _id: getMongoId(userId)})
+      console.log(user);
       return user;
     } catch (error) {
       throw error;
@@ -65,7 +66,7 @@ export async function createUser(data: User) {
   }
   
   
-  export async function updateUserById(data: User) {
+  export async function updateUserById(id: string, data: User) {
     try {
   
       /* Save in Fireauth */
@@ -76,11 +77,10 @@ export async function createUser(data: User) {
   
       /* Save in MongoDB */
       const db = await dbConnect();
-      let dbRef = db.collection("users");
-      let id = data._id;
+      let dbRef = db.collection("Users");
       delete data._id;
       let user: User = data;
-  
+      console.log('Id', id)
       const response = await dbRef.updateOne(
           {
               _id: getMongoId(id)
