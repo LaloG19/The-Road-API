@@ -1,12 +1,8 @@
 import { ObjectId } from "mongodb";
 
-export interface User{
+export interface News{
     _id?: any;
     uid?: string;
-    name: string,
-    lastname: String,
-    email: string,
-    password?: string,
-    rolename: string
-    creationDate: Date;
+    title: string,
+    content: string,
 }

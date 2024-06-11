@@ -5,15 +5,15 @@ import { BaseError } from "../../shared/classes/base-error";
 import { HttpStatusCode } from "../../shared/models/http.model";
 import { ParametersError } from "../../shared/classes/api-errors";
 
-export async function getAllUsersController(
+export async function getAllNewsController(
   req: Request,
   res: Response
 ) {
   try {
-    var response = await service.getAllUsers();
-    res.status(200).send({ status: HttpStatusCode.OK, message: "Todos los usuarios obtenidos!", data: response });
+    var response = await service.getAllNews();
+    res.status(200).send({ status: HttpStatusCode.OK, message: "Todos los Novedades obtenidos!", data: response });
   } catch (err) {
-    res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('GetAllUsersController ERROR:' + err));
+    res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('GetAllNewsController ERROR:' + err));
     //next(err);
   }
 }
@@ -25,75 +25,55 @@ export async function getByIdController(
       const id = req.params.id;
       const response = await service.getById(id);
 
-      res.status(200).send({ status: HttpStatusCode.OK, message: "Usuario Obtenido", data: response });
+      res.status(200).send({ status: HttpStatusCode.OK, message: "Novedad Obtenido", data: response });
   } catch (err) { 
     res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('GetByIdController ERROR:' + err));
       //next(err);
   }
 }
 
-export async function CreateUserController(
+export async function CreateNewController(
     req: Request,
     res: Response
   ) {
     try {
         const body = req.body;
-        console.log("User Data: ", body)
+        console.log("News Data: ", body)
         if(!body) {
-          throw new ParametersError("Missing params", 'CreateUserController', HttpStatusCode.BAD_REQUEST);
+          throw new ParametersError("Missing params", 'CreateNewController', HttpStatusCode.BAD_REQUEST);
         }
-        const database = await dbConnect();
-        const clientRef = database.collection("users");
-        const users = await clientRef.findOne({ email: body.email });
-        console.log('Correo encontrado en: ',users);
-        if(users){
-          let badResponse = 'Ya existe una cuenta registrada con ese correo'
-          res.status(200).send({ status: HttpStatusCode.ALREADY_EXISTS, message: "El usuario no fue creado", data: badResponse });
-        }else{
-          let response = await service.createUser(body);
-          res.status(200).send({ status: HttpStatusCode.OK, message: "Usuario Creado con Exito!", data: response });
-        }
+        let response = await service.createNews(body);
+        res.status(200).send({ status: HttpStatusCode.OK, message: "Novedad Creado con Exito!", data: response });
+       
     } catch (err) {
-      res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('CreateUserController ' + err));
+      res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('CreateNewController ' + err));
       //next(err);
     }
 }
-export async function UpdateUserByIdController(
+export async function updateNewsByIdController(
     req: Request,
     res: Response
   ) {
     try {
       const body = req.body;
-      console.log("User Data: ", body)
-      let response = await service.updateUserById(body);
-      res.status(200).send({ status: HttpStatusCode.OK, message: "Usuario actualizado con Exito!", data: response });
+      console.log("News Data: ", body)
+      let response = await service.updateNewsById(body);
+      res.status(200).send({ status: HttpStatusCode.OK, message: "Novedad actualizado con Exito!", data: response });
     } catch (err) {
-      res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('UpdateUserByIdController ERROR:' + err));
+      res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('updateNewsByIdController ERROR:' + err));
       //next(err);
     }
 }
-export async function DeleteUserByIdController(
+export async function DeleteNewByIdController(
     req: Request,
     res: Response
   ) {
     try {
         const id = req.params.id;
-        let response = await service.deleteUserById(id);
-        res.status(200).send({ status: HttpStatusCode.OK, message: "Usuario Eliminado con exito", data: response });
+        let response = await service.deleteNewsById(id);
+        res.status(200).send({ status: HttpStatusCode.OK, message: "Novedad Eliminado con exito", data: response });
     } catch (err) {
-      res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('DeleteUserByIdController ERROR:' + err));
+      res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('DeleteNewByIdController ERROR:' + err));
       //next(err);
     }
-}
-
-export async function updatePasswordController(req: Request, res: Response) {
-  try {
-    const id = req.body.id || null;
-    const password = req.body.password || null;
-    let response = await service.updatePassword(password, id);
-    res.status(200).send({ status: HttpStatusCode.OK, message: "Contraseña de usuario actualizada", data: response });
-  } catch (err) {
-    res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('UpdatePasswordController ERROR:' + err));
-      //next(err);
-  }
 }
