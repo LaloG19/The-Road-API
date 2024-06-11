@@ -1,13 +1,14 @@
+import { ObjectId } from "mongodb";
 import { dbConnect, getMongoId } from "../../database/mongoose.database";
-import { User } from "./interface";
+import { Road } from "./interface";
 /* import * as firebase from '../../database/firebase' */
 /* const firebaseAuth = firebase.auth(); */
 import { query, validationResult } from 'express-validator';
 
-export async function getAllUsers() {
+export async function getAllRoads() {
     try {
       const db = await dbConnect();
-      let dbRef = db.collection("Users");
+      let dbRef = db.collection("Roads");
       let response = await dbRef.find().sort({$natural:-1}).toArray() as [];
       return response
     } catch (error) {
@@ -16,23 +17,23 @@ export async function getAllUsers() {
     }
   }
 
-export async function getById(userId: string) {
+export async function getById(RoadId: string) {
     try {
       
       const database = await dbConnect();
-      const userRef = database.collection("Users");
-      let user = await userRef.findOne<any>({ uid: userId })
-      return user;
+      const RoadRef = database.collection("Roads");
+      let Road = await RoadRef.findOne({ _id: getMongoId(RoadId) })
+      return Road;
     } catch (error) {
       throw error;
     }
 }
 
-export async function createUser(data: User) {
+export async function createRoad(data: Road) {
     try {
   
       /* Save in Fireauth */
-      /* const userRecord = await firebaseAuth.createUser({ 
+      /* const RoadRecord = await firebaseAuth.createRoad({ 
         email: data.email,
         password: data.password,
         displayName: data.name,
@@ -41,22 +42,15 @@ export async function createUser(data: User) {
   
       /* Save in MongoDB */
       const database = await dbConnect();
-      const clientRef = database.collection("Users");
-  
-      let user: User = {
-        name: data.name,
-        lastname: data.lastname,
-        rolename: data.rolename,
-        email: data.email,
-        creationDate: new Date()
+      const clientRef = database.collection("Roads");
+      const roadData = {
+        title: data.title,
+        easyDescription: data.easyDescription,
+        fullDescription: data.fullDescription,
+        activities: data.activities
       }
-  
-  
-      let response = await clientRef.insertOne(user);
-      user = {
-        ...user,
-        _id: response.insertedId
-      }
+      let response = await clientRef.insertOne(roadData);
+      
       return response.insertedId;
     } catch (error) {
       console.log(error);
@@ -65,28 +59,21 @@ export async function createUser(data: User) {
   }
   
   
-  export async function updateUserById(data: User) {
+  export async function updateRoadById(data: Road) {
     try {
-  
-      /* Save in Fireauth */
-      /* await firebaseAuth.updateUser(data.uid!, {
-        email: data.email,
-        displayName: data.name,
-      }); */
   
       /* Save in MongoDB */
       const db = await dbConnect();
-      let dbRef = db.collection("users");
+      let dbRef = db.collection("Roads");
       let id = data._id;
       delete data._id;
-      let user: User = data;
   
       const response = await dbRef.updateOne(
           {
-              _id: getMongoId(id)
+              _id: getMongoId(id!)
           },
           {
-              $set: user
+              $set: data
           }
       );
       return response;
@@ -96,17 +83,13 @@ export async function createUser(data: User) {
     }
   }
   
-  export async function deleteUserById(id: string) {
+  export async function deleteRoadById(id: string) {
     try {
-      //Getting user informatino
+      //Getting Road informatino
       const database = await dbConnect();
-      const dBRef = database.collection("Users");
+      const dBRef = database.collection("Roads");
       //Checking if it exists
       let response = await dBRef.findOne({_id: getMongoId(id)})
-  
-      //Delete in Firebase
-      /* await firebaseAuth.deleteUser(response!.uid); */ 
-      //Delete in MongoDB
       await dBRef.deleteOne( { _id: getMongoId(id) });
       return id;
     } catch (error) {
@@ -115,11 +98,3 @@ export async function createUser(data: User) {
     }
   }
   
-  export async function updatePassword(password: string, uid: string) {
-    try {
-      /* await firebase.auth().updateUser(uid, { password: password }); */
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  }
