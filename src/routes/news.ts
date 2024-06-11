@@ -8,7 +8,7 @@ const NewsRouter = Router();
 
 /**
  * @swagger
- * /news/getNews:
+ * /api/news/getNews:
  *   get:
  *     summary: Obtiene todas las noticias
  *     responses:
@@ -25,7 +25,7 @@ NewsRouter.get('/getNews', getAllNewsController);
 
 /**
  * @swagger
- * /news/getNewsById/{id}:
+ * /api/news/getNewsById/{id}:
  *   get:
  *     summary: Obtiene una noticia por ID
  *     parameters:
@@ -47,7 +47,7 @@ NewsRouter.get('/getNewsById/:id', getByIdController);
 
 /**
  * @swagger
- * /news/CreateNews:
+ * /api/news/CreateNews:
  *   post:
  *     summary: Crea una nueva noticia
  *     requestBody:
@@ -64,7 +64,7 @@ NewsRouter.post('/CreateNews', CreateNewController);
 
 /**
  * @swagger
- * /news/UpdateNewsById/{id}:
+ * /api/news/UpdateNewsById/{id}:
  *   put:
  *     summary: Actualiza una noticia por ID
  *     parameters:
@@ -88,7 +88,7 @@ NewsRouter.put('/UpdateNewsById/:id', updateNewsByIdController);
 
 /**
  * @swagger
- * /news/deleteNewsById/{id}:
+ * /api/news/deleteNewsById/{id}:
  *   put:
  *     summary: Elimina una noticia por ID
  *     parameters:

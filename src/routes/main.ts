@@ -7,6 +7,6 @@ const routes = Router();
 
 routes.use('/users', userRouter);
 routes.use('/news', newsRoutes);
-routes.use('/road', roadRouter);
+routes.use('/roads', roadRouter);
 
 export default routes;
