@@ -108,12 +108,6 @@ roadRouter.post('/CreateRoad', roadsService.CreateRoadController);
  *                 type: string
  *               fullDescription:
  *                 type: string
- *               activities: 
- *               properties: 
- *                  _id: 
- *                    string
- *                  title: 
- *                    string
  *     responses:
  *       200:
  *         description: Ruta actualizada
@@ -129,15 +123,15 @@ roadRouter.put('/UpdateRoadById/:id', roadsService.UpdateRoadByIdController);
  * @swagger
  * /api/road/deleteRoadById/{id}:
  *   put:
- *     summary: Actualizar un usuario por ID
- *     description: Actualiza los detalles de un usuario específico por su ID
+ *     summary: Actualizar una Ruta por ID
+ *     description: Actualiza los detalles de una Ruta específica por su ID
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: ID del usuario
+ *         description: ID de la ruta
  *     responses:
  *       200:
  *         description: Usuario Eliminado
@@ -146,6 +140,6 @@ roadRouter.put('/UpdateRoadById/:id', roadsService.UpdateRoadByIdController);
  *             schema:
  *               type: object
  */
-roadRouter.put('/deleteRoadById/:id', roadsService.DeleteRoadByIdController);
+roadRouter.delete('/deleteRoadById/:id', roadsService.DeleteRoadByIdController);
 
 export default roadRouter;

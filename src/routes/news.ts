@@ -102,13 +102,6 @@ NewsRouter.put('/UpdateNewsById/:id', updateNewsByIdController);
  *       200:
  *         description: Noticia eliminada
  */
-NewsRouter.put('/deleteNewsById/:id', DeleteNewByIdController);
-NewsRouter.get(
-  '/test',
-  [
-    check('param').isString().withMessage('[GET]: Endpoint de prueba Get Usuarios falló.')
-  ],
-  Controller123
-);
- 
+NewsRouter.delete('/deleteNewsById/:id', DeleteNewByIdController);
+
 export default NewsRouter;
