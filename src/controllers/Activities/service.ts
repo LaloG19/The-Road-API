@@ -1,5 +1,5 @@
 import { dbConnect, getMongoId } from "../../database/mongoose.database";
-import { User } from "./interface";
+import { Activity } from "./interface";
 /* import * as firebase from '../../database/firebase' */
 /* const firebaseAuth = firebase.auth(); */
 import { query, validationResult } from 'express-validator';

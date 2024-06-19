@@ -1,12 +1,19 @@
 import { ObjectId } from "mongodb";
 
-export interface User{
+export interface Activity{
     _id?: any;
-    uid?: string;
-    name: string,
-    lastname: String,
-    email: string,
-    password?: string,
-    rolename: string
-    creationDate: Date;
+    title: string;
+    description: string;
+    preguntas: Preguntas[]
+}
+
+export interface Preguntas{
+    name: string;
+    options: Options[];
+}
+
+export interface Options{
+    title: string,
+    valid: boolean,
+    index: number
 }
