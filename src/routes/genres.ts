@@ -115,7 +115,7 @@ genreRouter.post('/createGenre', genresController.CreateGenreController);
  *             schema:
  *               type: object
  */
-genreRouter.put('/updateGenreById/:id', genresController.UpdateGenreByIdController);
+genreRouter.put('/updateGenreById', genresController.UpdateGenreByIdController);
 
 
 /**

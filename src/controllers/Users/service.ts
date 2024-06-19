@@ -70,17 +70,19 @@ export async function updateUserById(id: string, data: User) {
   try {
     const db = await dbConnect();
     let dbRef = db.collection("Users");
-    const newId = data._id;
+    console.log('id del usuario: ',id);
+    const firstResponse = await dbRef.findOne({ _id: getMongoId(id) })
     delete data._id;
-
+    console.log(firstResponse);
     const response = await dbRef.updateOne(
       {
-        _id: getMongoId(newId)
+        _id: getMongoId(id)
       },
       {
         $set: data
       }
     );
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error);

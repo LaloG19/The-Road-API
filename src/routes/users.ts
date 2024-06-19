@@ -81,7 +81,7 @@ userRouter.post('/createUser', CreateUserController);
 
 /**
  * @swagger
- * /api/users/updateUserById/{id}:
+ * /api/users/updateUserById:
  *   put:
  *     summary: Actualizar un usuario por ID
  *     description: Actualiza los detalles de un usuario específico por su ID
@@ -117,8 +117,7 @@ userRouter.post('/createUser', CreateUserController);
  *             schema:
  *               type: object
  */
-userRouter.put('/updateUserById/:id', UpdateUserByIdController);
-
+userRouter.put('/updateUserById', UpdateUserByIdController);
 
 /**
  * @swagger

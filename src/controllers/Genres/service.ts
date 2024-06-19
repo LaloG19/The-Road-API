@@ -51,7 +51,7 @@ export async function createGenre(data: any) {
       let dbRef = db.collection("Genres");
       let id = data._id;
       delete data._id;
-  
+      console.log(id);
       const response = await dbRef.updateOne(
           {
               _id: getMongoId(id)
