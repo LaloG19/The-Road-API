@@ -48,7 +48,7 @@ userRouter.get('/getUserById/:id', getByIdController);
 
 /**
  * @swagger
- * /api/users/CreateUser:
+ * /api/users/createUser:
  *   post:
  *     summary: Crear un nuevo usuario
  *     description: Crea un nuevo usuario y lo guarda en la base de datos
@@ -77,11 +77,11 @@ userRouter.get('/getUserById/:id', getByIdController);
  *             schema:
  *               type: object
  */
-userRouter.post('/CreateUser', CreateUserController);
+userRouter.post('/createUser', CreateUserController);
 
 /**
  * @swagger
- * /api/users/UpdateUserById/{id}:
+ * /api/users/updateUserById/{id}:
  *   put:
  *     summary: Actualizar un usuario por ID
  *     description: Actualiza los detalles de un usuario específico por su ID
@@ -117,7 +117,7 @@ userRouter.post('/CreateUser', CreateUserController);
  *             schema:
  *               type: object
  */
-userRouter.put('/UpdateUserById/:id', UpdateUserByIdController);
+userRouter.put('/updateUserById/:id', UpdateUserByIdController);
 
 
 /**

@@ -70,16 +70,12 @@ export async function updateUserById(id: string, data: User) {
   try {
     const db = await dbConnect();
     let dbRef = db.collection("Users");
-    const existingUser = await getById(id);
-    
-    if (!existingUser) {
-      throw new Error('User not found');
-    }
+    const newId = data._id;
     delete data._id;
 
     const response = await dbRef.updateOne(
       {
-        _id: getMongoId(id)
+        _id: getMongoId(newId)
       },
       {
         $set: data
