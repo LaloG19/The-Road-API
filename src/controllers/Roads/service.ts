@@ -22,24 +22,19 @@ export async function getById(RoadId: string) {
 
     const database = await dbConnect();
     const RoadRef = database.collection("Roads");
-    /* let Road = await RoadRef.findOne({ _id: getMongoId(RoadId) }) */
-    const routes = database.collection('routes');
-    const activities = database.collection('activities');
-
-    const pipeline = [
-      { $match: { _id: getMongoId(RoadId) } },
-      {
-        $lookup: {
-          from: 'activities',
-          localField: 'activities',
-          foreignField: '_id',
-          as: 'activityDetails'
-        }
-      }
-    ];
-
-    const route = await routes.aggregate(pipeline).toArray();
-    return route;
+    const activities = database.collection('Activities');
+    let Road = await RoadRef.findOne({ _id: getMongoId(RoadId) })
+    
+    if (!Road) {
+      console.error("Error en getById, no se encontró la ruta");
+      throw new Error('No se encontró la ruta')
+    }
+    console.log(Road)
+    const activityIds = Road.activities.map((id: any) => getMongoId(id));
+    const activityDetails = await activities.find({ _id: { $in: activityIds } }).toArray();
+    console.log(activityDetails)
+    Road.activityDetails = activityDetails;
+    return Road;
   } catch (error) {
     throw error;
   }
