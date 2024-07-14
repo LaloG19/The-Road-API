@@ -5,9 +5,20 @@ const genreRouter = Router();
 
 /**
  * @swagger
+ * tags:
+ *   - name: Géneros / Categorías
+ *     description: CRUD y buscador de géneros / categorías
+ *
+ *
+ */
+
+/**
+ * @swagger
  * /api/genre/getAllGenres:
  *   get:
  *     summary: Obtener todos los usuarios
+ *     tags:
+ *     - Géneros / Categorías
  *     description: Retorna una lista de todos los usuarios
  *     responses:
  *       200:
@@ -26,6 +37,8 @@ genreRouter.get('/getAllGenres', genresController.GetAllGenresController);
  * /api/genre/getGenreById/{id}:
  *   get:
  *     summary: Obtener usuario por ID
+ *     tags:
+ *     - Géneros / Categorías
  *     description: Retorna un usuario específico por su ID
  *     parameters:
  *       - in: path
@@ -49,6 +62,8 @@ genreRouter.get('/getGenreById/:id', genresController.GetGenreByIdController);
  * /api/genre/createGenre:
  *   post:
  *     summary: Crear un nuevo usuario
+ *     tags:
+ *     - Géneros / Categorías
  *     description: Crea un nuevo usuario y lo guarda en la base de datos
  *     requestBody:
  *       required: true
@@ -82,6 +97,8 @@ genreRouter.post('/createGenre', genresController.CreateGenreController);
  * /api/genre/updateGenreById/{id}:
  *   put:
  *     summary: Actualizar un usuario por ID
+ *     tags:
+ *     - Géneros / Categorías
  *     description: Actualiza los detalles de un usuario específico por su ID
  *     parameters:
  *       - in: path
@@ -123,6 +140,8 @@ genreRouter.put('/updateGenreById', genresController.UpdateGenreByIdController);
  * /api/genre/deleteGenreById/{id}:
  *   put:
  *     summary: Actualizar un usuario por ID
+ *     tags:
+ *     - Géneros / Categorías
  *     description: Actualiza los detalles de un usuario específico por su ID
  *     parameters:
  *       - in: path

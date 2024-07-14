@@ -5,12 +5,22 @@ import { Controller123 } from '../controllers/Controller123';
 
 const NewsRouter = Router();
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Novedades
+ *     description: CRUD y buscador de novedades
+ *
+ *
+ */
 
 /**
  * @swagger
  * /api/news/getNews:
  *   get:
  *     summary: Obtiene todas las noticias
+ *     tags:
+ *      - Novedades
  *     responses:
  *       200:
  *         description: Lista de noticias
@@ -28,6 +38,8 @@ NewsRouter.get('/getNews', getAllNewsController);
  * /api/news/getNewsById/{id}:
  *   get:
  *     summary: Obtiene una noticia por ID
+ *     tags:
+ *      - Novedades
  *     parameters:
  *       - in: path
  *         name: id
@@ -50,6 +62,8 @@ NewsRouter.get('/getNewsById/:id', getByIdController);
  * /api/news/CreateNews:
  *   post:
  *     summary: Crea una nueva noticia
+ *     tags:
+ *      - Novedades
  *     requestBody:
  *       required: true
  *       content:
@@ -67,6 +81,8 @@ NewsRouter.post('/CreateNews', CreateNewController);
  * /api/news/UpdateNewsById/{id}:
  *   put:
  *     summary: Actualiza una noticia por ID
+ *     tags:
+ *      - Novedades
  *     parameters:
  *       - in: path
  *         name: id
@@ -91,6 +107,8 @@ NewsRouter.put('/UpdateNewsById/:id', updateNewsByIdController);
  * /api/news/deleteNewsById/{id}:
  *   put:
  *     summary: Elimina una noticia por ID
+ *     tags:
+ *      - Novedades
  *     parameters:
  *       - in: path
  *         name: id

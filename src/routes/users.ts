@@ -7,9 +7,20 @@ const userRouter = Router();
 
 /**
  * @swagger
+ * tags:
+ *   - name: Usuarios
+ *     description: CRUD, buscador y autenticación de usuarios 
+ *
+ *
+ */
+
+/**
+ * @swagger
  * /api/users/getUsers:
  *   get:
  *     summary: Obtener todos los usuarios
+ *     tags:
+ *       - Usuarios
  *     description: Retorna una lista de todos los usuarios
  *     responses:
  *       200:
@@ -28,6 +39,8 @@ userRouter.get('/getUsers', getAllUsersController);
  * /api/users/getUserById/{id}:
  *   get:
  *     summary: Obtener usuario por ID
+ *     tags:
+ *       - Usuarios
  *     description: Retorna un usuario específico por su ID
  *     parameters:
  *       - in: path
@@ -51,6 +64,8 @@ userRouter.get('/getUserById/:id', getByIdController);
  * /api/users/createUser:
  *   post:
  *     summary: Crear un nuevo usuario
+ *     tags:
+ *       - Usuarios
  *     description: Crea un nuevo usuario y lo guarda en la base de datos
  *     requestBody:
  *       required: true
@@ -59,7 +74,7 @@ userRouter.get('/getUserById/:id', getByIdController);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               na'me:
  *                 type: string
  *               lastname:
  *                 type: string
@@ -84,6 +99,8 @@ userRouter.post('/createUser', CreateUserController);
  * /api/users/updateUserById:
  *   put:
  *     summary: Actualizar un usuario por ID
+ *     tags:
+ *       - Usuarios
  *     description: Actualiza los detalles de un usuario específico por su ID
  *     parameters:
  *       - in: path
@@ -123,7 +140,9 @@ userRouter.put('/updateUserById', UpdateUserByIdController);
  * @swagger
  * /api/users/deleteUserById/{id}:
  *   put:
- *     summary: Actualizar un usuario por ID
+ *     summary: Eliminar un usuario por ID
+ *     tags:
+ *       - Usuarios
  *     description: Actualiza los detalles de un usuario específico por su ID
  *     parameters:
  *       - in: path

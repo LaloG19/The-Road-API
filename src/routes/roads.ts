@@ -7,9 +7,20 @@ const roadRouter = Router();
 
 /**
  * @swagger
+ * tags:
+ *   - name: Rutas
+ *     description: CRUD y buscador de rutas
+ *
+ *
+ */
+
+/**
+ * @swagger
  * /api/roads/getAllRoads:
  *   get:
  *     summary: Obtener todos los usuarios
+ *     tags:
+ *      - Rutas
  *     description: Retorna una lista de todos los usuarios
  *     responses:
  *       200:
@@ -28,6 +39,8 @@ roadRouter.get('/getAllRoads', roadsService.getAllRoadsController);
  * /api/roads/getRoadById/{id}:
  *   get:
  *     summary: Obtener usuario por ID
+ *     tags:
+ *      - Rutas
  *     description: Retorna un usuario específico por su ID
  *     parameters:
  *       - in: path
@@ -51,6 +64,8 @@ roadRouter.get('/getRoadById/:id', roadsService.getByIdController);
  * /api/roads/CreateRoad:
  *   post:
  *     summary: Crear un nuevo usuario
+ *     tags:
+ *      - Rutas
  *     description: Crea un nuevo usuario y lo guarda en la base de datos
  *     requestBody:
  *       required: true
@@ -87,6 +102,8 @@ roadRouter.post('/CreateRoad', roadsService.CreateRoadController);
  * /api/road/UpdateRoadById/{id}:
  *   put:
  *     summary: Actualizar un usuario por ID
+ *     tags:
+ *      - Rutas
  *     description: Actualiza los detalles de un usuario específico por su ID
  *     parameters:
  *       - in: path
@@ -118,12 +135,13 @@ roadRouter.post('/CreateRoad', roadsService.CreateRoadController);
  */
 roadRouter.put('/UpdateRoadById/:id', roadsService.UpdateRoadByIdController);
 
-
 /**
  * @swagger
  * /api/road/deleteRoadById/{id}:
  *   put:
  *     summary: Actualizar una Ruta por ID
+ *     tags:
+ *      - Rutas
  *     description: Actualiza los detalles de una Ruta específica por su ID
  *     parameters:
  *       - in: path
