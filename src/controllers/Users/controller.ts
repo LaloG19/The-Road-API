@@ -68,7 +68,7 @@ export async function UpdateUserByIdController(
       if (!body || !body._id) {
         return res.status(400).send({ status: HttpStatusCode.BAD_REQUEST, message: "Invalid data" });
       }
-      let response = await service.updateUserById(body._id, body);
+      let response = await service.updateUserById(body);
       res.status(200).send({ status: HttpStatusCode.OK, message: "Usuario actualizado con Exito!", data: response });
     } catch (err) {
       res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('UpdateUserByIdController ERROR:' + err));

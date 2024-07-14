@@ -8,5 +8,5 @@ export interface User{
     email: string,
     password?: string,
     rolename: string
-    creationDate: Date;
+    creationDate?: Date;
 }
