@@ -16,19 +16,38 @@ const genreRouter = Router();
  * @swagger
  * /api/genre/getAllGenres:
  *   get:
- *     summary: Obtener todos los usuarios
+ *     summary: Obtener todos los géneros
  *     tags:
- *     - Géneros / Categorías
- *     description: Retorna una lista de todos los usuarios
+ *       - Géneros / Categorías
+ *     description: Retorna una lista de todos los géneros disponibles
  *     responses:
  *       200:
- *         description: Lista de usuarios
+ *         description: Lista de géneros obtenida exitosamente
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 type: object
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Todos los Géneros obtenidos!
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         example: "6671f8c5f066417aa3164939"
+ *                       title:
+ *                         type: string
+ *                         example: "Express"
+ *                       cantidad:
+ *                         type: integer
+ *                         example: 0
  */
 genreRouter.get('/getAllGenres', genresController.GetAllGenresController);
 
@@ -36,24 +55,56 @@ genreRouter.get('/getAllGenres', genresController.GetAllGenresController);
  * @swagger
  * /api/genre/getGenreById/{id}:
  *   get:
- *     summary: Obtener usuario por ID
+ *     summary: Obtener género por ID
  *     tags:
- *     - Géneros / Categorías
- *     description: Retorna un usuario específico por su ID
+ *       - Géneros / Categorías
+ *     description: Retorna un género específico por su ID
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: ID del usuario
+ *         description: ID del género
  *     responses:
  *       200:
- *         description: Usuario encontrado
+ *         description: Género encontrado
  *         content:
  *           application/json:
  *             schema:
  *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Genero Obtenido
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       example: "6671f8c5f066417aa3164939"
+ *                     title:
+ *                       type: string
+ *                       example: "Express"
+ *                     cantidad:
+ *                       type: integer
+ *                       example: 0
+ *       404:
+ *         description: Género no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 404
+ *                 message:
+ *                   type: string
+ *                   example: Género no encontrado
  */
 genreRouter.get('/getGenreById/:id', genresController.GetGenreByIdController);
 
@@ -61,10 +112,10 @@ genreRouter.get('/getGenreById/:id', genresController.GetGenreByIdController);
  * @swagger
  * /api/genre/createGenre:
  *   post:
- *     summary: Crear un nuevo usuario
+ *     summary: Crear un nuevo género
  *     tags:
- *     - Géneros / Categorías
- *     description: Crea un nuevo usuario y lo guarda en la base de datos
+ *       - Géneros / Categorías
+ *     description: Crea un nuevo género y lo guarda en la base de datos
  *     requestBody:
  *       required: true
  *       content:
@@ -72,41 +123,56 @@ genreRouter.get('/getGenreById/:id', genresController.GetGenreByIdController);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               title:
  *                 type: string
- *               lastname:
- *                 type: string
- *               email:
- *                 type: string
- *               password: 
- *                 type: string
- *               rolename: 
- *                 type: string
+ *                 example: Express
+ *               cantidad:
+ *                 type: integer
+ *                 example: 0
  *     responses:
  *       201:
- *         description: Usuario creado
+ *         description: Género creado
  *         content:
  *           application/json:
  *             schema:
  *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 201
+ *                 message:
+ *                   type: string
+ *                   example: Género creado exitosamente
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       example: "6671f8c5f066417aa3164939"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 400
+ *                 message:
+ *                   type: string
+ *                   example: Error al crear el género
  */
 genreRouter.post('/createGenre', genresController.CreateGenreController);
 
 /**
  * @swagger
- * /api/genre/updateGenreById/{id}:
+ * /api/genre/updateGenreById:
  *   put:
- *     summary: Actualizar un usuario por ID
+ *     summary: Actualizar un género por ID
  *     tags:
- *     - Géneros / Categorías
- *     description: Actualiza los detalles de un usuario específico por su ID
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: ID del usuario
+ *       - Géneros / Categorías
+ *     description: Actualiza los detalles de un género específico por su ID
  *     requestBody:
  *       required: true
  *       content:
@@ -114,49 +180,102 @@ genreRouter.post('/createGenre', genresController.CreateGenreController);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               _id:
  *                 type: string
- *               lastname:
+ *                 example: "6671f8c5f066417aa3164939"
+ *               title:
  *                 type: string
- *               email:
- *                 type: string
- *               password: 
- *                 type: string
- *               rolename: 
- *                 type: string
+ *                 example: "Express"
+ *               cantidad:
+ *                 type: number
+ *                 example: "1"
  *     responses:
  *       200:
- *         description: Usuario actualizado
+ *         description: Género actualizado
  *         content:
  *           application/json:
  *             schema:
  *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Género actualizado exitosamente
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       example: "6671f8c5f066417aa3164939"
+ *                     title:
+ *                       type: string
+ *                       example: "Express"
+ *                     cantidad:
+ *                       type: number
+ *                       example: 0
+ *       404:
+ *         description: Género no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 404
+ *                 message:
+ *                   type: string
+ *                   example: Género no encontrado
  */
 genreRouter.put('/updateGenreById', genresController.UpdateGenreByIdController);
-
 
 /**
  * @swagger
  * /api/genre/deleteGenreById/{id}:
- *   put:
- *     summary: Actualizar un usuario por ID
+ *   delete:
+ *     summary: Eliminar un género por ID
  *     tags:
- *     - Géneros / Categorías
- *     description: Actualiza los detalles de un usuario específico por su ID
+ *       - Géneros / Categorías
+ *     description: Elimina un género específico por su ID
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: ID del usuario
+ *         description: ID del género a eliminar
  *     responses:
  *       200:
- *         description: Usuario Eliminado
+ *         description: Género eliminado
  *         content:
  *           application/json:
  *             schema:
  *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Género eliminado exitosamente
+ *                 data:
+ *                   type: string
+ *                   example: "6671f8c5f066417aa3164939"
+ *       404:
+ *         description: Género no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 404
+ *                 message:
+ *                   type: string
+ *                   example: Género no encontrado
  */
 genreRouter.delete('/deleteGenreById/:id', genresController.DeleteGenreByIdController);
  
