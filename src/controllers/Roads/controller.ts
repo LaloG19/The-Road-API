@@ -38,21 +38,12 @@ export async function CreateRoadController(
   ) {
     try {
         const body = req.body;
-        console.log("User Data: ", body)
+        console.log("Road Data: ", body)
         if(!body) {
           throw new ParametersError("Missing params", 'CreateRoadController', HttpStatusCode.BAD_REQUEST);
         }
-        const database = await dbConnect();
-        const clientRef = database.collection("users");
-        const users = await clientRef.findOne({ email: body.email });
-        console.log('Correo encontrado en: ',users);
-        if(users){
-          let badResponse = 'Ya existe una cuenta registrada con ese correo'
-          res.status(200).send({ status: HttpStatusCode.ALREADY_EXISTS, message: "El usuario no fue creado", data: badResponse });
-        }else{
-          let response = await service.createRoad(body);
-          res.status(200).send({ status: HttpStatusCode.OK, message: "Ruta Creada con Exito!", data: response });
-        }
+        let response = await service.createRoad(body);
+        res.status(200).send({ status: HttpStatusCode.OK, message: "Ruta Creada con Exito!", data: response });
     } catch (err) {
       res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('CreateRoadController ' + err));
       //next(err);

@@ -42,23 +42,14 @@ export async function getById(RoadId: string) {
 
 export async function createRoad(data: Road) {
   try {
-
-    /* Save in Fireauth */
-    /* const RoadRecord = await firebaseAuth.createRoad({ 
-      email: data.email,
-      password: data.password,
-      displayName: data.name,
-      emailVerified: true,
-    }) */
-
-    /* Save in MongoDB */
     const database = await dbConnect();
     const clientRef = database.collection("Roads");
     const roadData = {
       title: data.title,
       easyDescription: data.easyDescription,
       fullDescription: data.fullDescription,
-      activities: data.activities
+      activities: data.activities,
+      img: data.img,
     }
     let response = await clientRef.insertOne(roadData);
 

@@ -6,6 +6,7 @@ export interface Road {
     easyDescription: string;
     fullDescription: string;
     activities: RoadActivity[];
+    img: string;
 }
 
 export interface RoadActivity {
