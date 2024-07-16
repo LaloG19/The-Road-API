@@ -116,7 +116,7 @@ roadRouter.post('/CreateRoad', roadsService.CreateRoadController);
  *             schema:
  *               type: object
  */
-roadRouter.put('/UpdateRoadById/:id', roadsService.UpdateRoadByIdController);
+roadRouter.put('/UpdateRoadById', roadsService.UpdateRoadByIdController);
 
 
 /**
