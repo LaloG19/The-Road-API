@@ -7,6 +7,7 @@ export interface Road {
     fullDescription: string;
     activities: RoadActivity[];
     img: string;
+    duration: string;
 }
 
 export interface RoadActivity {

@@ -49,7 +49,8 @@ export async function createRoad(data: Road) {
       easyDescription: data.easyDescription,
       fullDescription: data.fullDescription,
       activities: data.activities,
-      img: data.img,
+      duration: data.duration,
+      img: data.img || '',
     }
     let response = await clientRef.insertOne(roadData);
 
