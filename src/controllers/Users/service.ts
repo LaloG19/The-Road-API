@@ -28,6 +28,18 @@ export async function getById(userId: string) {
     throw error;
   }
 }
+export async function getByMail(userId: string) {
+  try {
+
+    const db = await dbConnect();
+    let dbRef = db.collection("Users");
+    let user = await dbRef.findOne({ email: userId })
+    console.log(user);
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
 
 export async function createUser(data: User) {
   try {

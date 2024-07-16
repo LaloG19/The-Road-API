@@ -31,6 +31,20 @@ export async function getByIdController(
       //next(err);
   }
 }
+export async function getByMailController(
+  req: Request,
+  res: Response
+) {
+  try {
+      const id = req.body;
+      const response = await service.getByMail(id);
+
+      res.status(200).send({ status: HttpStatusCode.OK, message: "Usuario Obtenido", data: response });
+  } catch (err) { 
+    res.status((<BaseError>err)?.httpCode || 500).send(BaseError.buildErrorMessage('GetByIdController ERROR:' + err));
+      //next(err);
+  }
+}
 
 export async function CreateUserController(
     req: Request,

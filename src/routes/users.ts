@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { CreateUserController, DeleteUserByIdController, getAllUsersController, getByIdController, UpdateUserByIdController } from '../controllers/Users/controller';
+import { CreateUserController, DeleteUserByIdController, getAllUsersController, getByIdController, getByMailController, UpdateUserByIdController } from '../controllers/Users/controller';
 import { Controller123 } from '../controllers/Controller123';
 
 const userRouter = Router();
@@ -237,5 +237,6 @@ userRouter.put('/updateUserById', UpdateUserByIdController);
  *         description: Error del servidor
  */
 userRouter.delete('/deleteUserById/:id', DeleteUserByIdController);
+userRouter.post('/getUserByMail', getByMailController);
  
 export default userRouter;
