@@ -49,6 +49,7 @@ export async function createUser(data: User) {
       lastname: data.lastname,
       rolename: data.rolename,
       email: data.email,
+      password: data.password,
       creationDate: new Date()
     }
 
@@ -66,12 +67,13 @@ export async function createUser(data: User) {
 }
 
 
-export async function updateUserById(id: string, data: User) {
+export async function updateUserById(data: User) {
   try {
     const db = await dbConnect();
     let dbRef = db.collection("Users");
-    console.log('id del usuario: ',id);
-    const firstResponse = await dbRef.findOne({ _id: getMongoId(id) })
+    console.log('id del usuario: ',data._id);
+    const firstResponse = await dbRef.findOne({ _id: getMongoId(data._id) })
+    let id = data._id;
     delete data._id;
     console.log(firstResponse);
     const response = await dbRef.updateOne(
@@ -92,7 +94,6 @@ export async function updateUserById(id: string, data: User) {
 
 export async function deleteUserById(id: string) {
   try {
-    //Getting user informatino
     const database = await dbConnect();
     const dBRef = database.collection("Users");
     //Checking if it exists

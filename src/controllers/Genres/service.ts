@@ -14,15 +14,16 @@ export async function getAllGenres() {
   }
 
 export async function getGenreById(userId: string) {
-    try {
-      
-      const database = await dbConnect();
-      const genreRef = database.collection("Genres");
-      let genre = await genreRef.findOne<any>({ _id: getMongoId(userId) })
-      return genre;
-    } catch (error) {
-      throw error;
-    }
+  try {
+    const database = await dbConnect();
+    const genreRef = database.collection("Genres");
+    let genre = await genreRef.findOne<any>({ _id: getMongoId(userId) });
+
+    return genre;
+  } 
+  catch (error) {
+    throw error;
+  }
 }
 
 export async function createGenre(data: any) {

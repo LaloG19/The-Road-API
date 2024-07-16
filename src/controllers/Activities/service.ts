@@ -77,6 +77,10 @@ export async function createActivity(data: any) {
       const dBRef = database.collection("Activities");
       //Checking if it exists
       let response = await dBRef.findOne({_id: getMongoId(id)})
+      
+      if (!response) {
+        throw new Error("Actividad no encontrada");
+      }
   
       //Delete in Firebase
       /* await firebaseAuth.deleteUser(response!.uid); */ 
