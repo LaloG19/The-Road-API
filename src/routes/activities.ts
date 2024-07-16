@@ -117,7 +117,7 @@ activityRouter.post('/createActivity', activityControllers.CreateActivityControl
  *             schema:
  *               type: object
  */
-activityRouter.put('/updateActivityById/:id', activityControllers.UpdateActivityByIdController);
+activityRouter.put('/updateActivityById', activityControllers.UpdateActivityByIdController);
 
 
 /**
