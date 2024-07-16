@@ -37,7 +37,7 @@ export async function getByMailController(
 ) {
   try {
       const id = req.body;
-      const response = await service.getByMail(id);
+      const response = await service.getByMail(id.email);
 
       res.status(200).send({ status: HttpStatusCode.OK, message: "Usuario Obtenido", data: response });
   } catch (err) { 
