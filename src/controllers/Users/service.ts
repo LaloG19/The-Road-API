@@ -2,7 +2,6 @@ import { dbConnect, getMongoId } from "../../database/mongoose.database";
 import { User } from "./interface";
 /* import * as firebase from '../../database/firebase' */
 /* const firebaseAuth = firebase.auth(); */
-import { query, validationResult } from 'express-validator';
 
 export async function getAllUsers() {
   try {
@@ -62,7 +61,8 @@ export async function createUser(data: User) {
       rolename: data.rolename,
       email: data.email,
       password: data.password,
-      creationDate: new Date()
+      creationDate: new Date(),
+      points: data.points | 0
     }
 
 
