@@ -60,7 +60,6 @@ export async function createUser(data: User) {
       lastname: data.lastname,
       rolename: data.rolename,
       email: data.email,
-      password: data.password,
       creationDate: new Date(),
       points: data.points | 0
     }
